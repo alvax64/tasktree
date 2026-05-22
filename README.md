@@ -8,6 +8,14 @@ The idea is deliberately simple: active tasks stay short and scannable, long con
 
 The default workflow uses a companion repository named `<source-repo>.tasktree`, so task updates can move independently from source-code branches and pull requests. Local in-repo tracking with `.tasktree/` is available, but it is not the recommended default unless the work is a small personal project.
 
+## A Common Story
+
+You start with a repo and a clear request: audit this area, clean up that module, fix a batch of bugs, or let several agents work through a larger plan. The first pass is easy to follow because everything is still in one conversation.
+
+Then reality shows up. One branch is not ready to merge. A second agent finds a blocker while a third creates follow-up work. Someone marks a task done, but the verification lives only in chat. A useful finding is buried in a transcript. The source repo should not be touched just to update planning notes, but the planning notes still need history, review, and handoff.
+
+`tasktree` is for that point in the work. It gives the effort a small, explicit coordination repo: what is active, what is blocked, what was verified, what was compacted, and what the next person or agent should pick up. It is intentionally less formal than a project-management system and more durable than chat.
+
 ## What It Provides
 
 - A `SKILL.md` with the operating rules agents should follow.
