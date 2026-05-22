@@ -1,6 +1,6 @@
 ---
 name: tasktree
-description: Maintain plain-text, Markdown-compatible task trees for AI agents and humans working in or alongside repositories. Use when Codex needs to create, update, compact, split, synchronize, lint, or hand off durable task tracking across local .tasktree directories, multi-file tasktrees, or companion repositories named <repo>.tasktree.
+description: Maintain plain-text, Markdown-compatible task trees for AI agents and humans working alongside repositories, with Companion Repository Mode as the recommended default using <repo>.tasktree. Use when Codex needs to create, update, compact, split, synchronize, lint, or hand off durable task tracking. Local .tasktree mode is optional and not recommended unless the user has a small personal project.
 ---
 
 # tasktree
@@ -28,16 +28,41 @@ Never silently overwrite an existing tasktree.
 
 ## Default Layout
 
-Use `.tasktree/` by default.
+Use Companion Repository Mode by default. Create or use an adjacent companion repository named `<source-repo>.tasktree`.
 
 Start with one file:
 
 ```txt
-.tasktree/
+<source-repo>.tasktree/
 └── TASKTREE.md
 ```
 
 For normal repository work, create:
+
+```txt
+<source-repo>.tasktree/
+├── TASKTREE.md
+├── README.md
+├── config.md
+├── status-legend.md
+├── journal.md
+├── completed.md
+├── sessions/
+├── details/
+└── source-repo.md
+```
+
+Split into multiple tasktree files only when it improves clarity, reduces conflicts, or makes navigation easier.
+
+## Modes
+
+Use Companion Repository Mode when task state should live outside the source repository. This is the suggested default. Default to an adjacent repo named `<source-repo>.tasktree`. Use this for multi-agent work, branch-heavy work, long-running audits/refactors, protected source repositories, or teams that need tasktree commits independent from source-code PRs.
+
+In Companion Repository Mode, read `references/companion-mode.md` before initializing or editing the companion repo.
+
+### Optional Local Mode
+
+Local Mode stores tasktree files inside the source repository, usually under `.tasktree/`. Do not recommend Local Mode unless the user has a small personal project and wants task state committed with the source code. If Local Mode is requested, use:
 
 ```txt
 .tasktree/
@@ -49,22 +74,12 @@ For normal repository work, create:
 └── details/
 ```
 
-Split into multiple tasktree files only when it improves clarity, reduces conflicts, or makes navigation easier.
-
-## Modes
-
-Use Local Mode when the tasktree should live inside the source repository. It is suitable for focused work, local audits, refactors, feature plans, migrations, docs cleanup, and bug batches owned by one main human or agent.
-
-Use Companion Repository Mode when task state should live outside the source repository. This is the suggested default. Default to an adjacent repo named `<source-repo>.tasktree`. Use this for multi-agent work, branch-heavy work, long-running audits/refactors, protected source repositories, or teams that need tasktree commits independent from source-code PRs.
-
-In Companion Repository Mode, read `references/companion-mode.md` before initializing or editing the companion repo.
-
 ## Initialization
 
 If no tasktree exists, ask only the minimum useful question:
 
 ```txt
-I can initialize tasktree in Companion Repository Mode in a separate repo named <repo>.tasktree or Local Mode inside this repository.
+I can initialize tasktree in Companion Repository Mode in a separate repo named <repo>.tasktree. Local Mode inside this repository is optional, but not recommended unless this is a small personal project.
 
 Suggested default: Companion Repository Mode, so task state can update independently from source-code branches and PRs.
 

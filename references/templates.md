@@ -8,7 +8,7 @@ Use these templates when initializing or expanding a tasktree. Keep Markdown pla
 # Tasktree
 
 Scope: repo-work
-Mode: Local
+Mode: Companion Repository
 Config: config.md
 Legend: status-legend.md
 
@@ -35,7 +35,7 @@ repo-work/
 # Tasktree Config
 
 Version: 1
-Mode: Local
+Mode: Companion Repository
 Root tasktree: TASKTREE.md
 Details directory: details
 Journal: journal.md
@@ -167,7 +167,7 @@ Tasktree path:
 
 ## YYYY-MM-DD
 
-- Initialized tasktree in Local Mode.
+- Initialized tasktree in Companion Repository Mode.
 - Added AUD-001 frontend audit and BUG-001 flaky settings test.
 - Assumption: production build verification should include both type checking and bundling until confirmed.
 ```
