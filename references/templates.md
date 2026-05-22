@@ -52,13 +52,9 @@ Only [x] counts as complete unless this list changes.
 ## Default Metadata
 
 - Status
-- Task ID
 - Short description
 - Detail path
-- Updated date
-- Owner or agent
-- Related branch, when relevant
-- Verification, when relevant
+- Optional: task ID, updated date, owner or agent, related branch, verification, priority, risk, tags, source commit, PR, estimate, blocker reason, evidence path, or related source files
 
 ## Split Policy
 

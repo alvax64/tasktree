@@ -53,9 +53,9 @@ Split into multiple tasktree files only when it improves clarity, reduces confli
 
 ## Modes
 
-Use Local Mode when the tasktree should live inside the source repository. This is the default for focused work, local audits, refactors, feature plans, migrations, docs cleanup, and bug batches owned by one main human or agent.
+Use Local Mode when the tasktree should live inside the source repository. It is suitable for focused work, local audits, refactors, feature plans, migrations, docs cleanup, and bug batches owned by one main human or agent.
 
-Use Companion Repository Mode when task state should live outside the source repository. Default to an adjacent repo named `<source-repo>.tasktree`. Use this for multi-agent work, branch-heavy work, long-running audits/refactors, protected source repositories, or teams that need tasktree commits independent from source-code PRs.
+Use Companion Repository Mode when task state should live outside the source repository. This is the suggested default. Default to an adjacent repo named `<source-repo>.tasktree`. Use this for multi-agent work, branch-heavy work, long-running audits/refactors, protected source repositories, or teams that need tasktree commits independent from source-code PRs.
 
 In Companion Repository Mode, read `references/companion-mode.md` before initializing or editing the companion repo.
 
@@ -64,21 +64,16 @@ In Companion Repository Mode, read `references/companion-mode.md` before initial
 If no tasktree exists, ask only the minimum useful question:
 
 ```txt
-I can initialize tasktree in Local Mode inside this repository or Companion Repository Mode in a separate repo named <repo>.tasktree.
+I can initialize tasktree in Companion Repository Mode in a separate repo named <repo>.tasktree or Local Mode inside this repository.
 
-Suggested default: Local Mode, unless this is multi-agent, long-running, branch-heavy, or should be independent from the source repo.
+Suggested default: Companion Repository Mode, so task state can update independently from source-code branches and PRs.
 
 Default metadata:
 - Status
-- Task ID
 - Short description
 - Detail path
-- Updated date
-- Owner/agent
-- Related branch when relevant
-- Verification when relevant
 
-Use these defaults, or specify extra fields such as priority, risk, tags, source commit, PR, estimate, blocker reason, evidence path, or related source files.
+Optional metadata includes task ID, updated date, owner/agent, related branch, verification, priority, risk, tags, source commit, PR, estimate, blocker reason, evidence path, or related source files.
 ```
 
 Use `references/templates.md` for initial `config.md`, `status-legend.md`, `journal.md`, `completed.md`, detail files, companion `source-repo.md`, and session logs.
