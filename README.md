@@ -84,6 +84,43 @@ Default task metadata is intentionally small:
 
 Other fields, such as owner, branch, verification, risk, PR, source commit, or evidence, are optional.
 
+## Using With Claude
+
+Claude-style agent skills also use a `SKILL.md` file with YAML frontmatter and Markdown instructions. To use this repository with a Claude environment that supports skills, keep the same directory shape and install or upload the `tasktree` folder wherever that environment expects skill packages.
+
+The portable parts are:
+
+- `SKILL.md`
+- `references/templates.md`
+- `references/companion-mode.md`
+- `scripts/tasktree_lint.py`, if the environment can run local scripts
+
+The `agents/openai.yaml` file is specific to OpenAI/Codex UI metadata. Claude clients can ignore it unless they have their own adapter that reads it.
+
+If the Claude environment does not load referenced files automatically, include `SKILL.md` first, then add the relevant reference file only when needed:
+
+- Use `references/templates.md` when initializing or expanding a tasktree.
+- Use `references/companion-mode.md` when working in a separate `<source-repo>.tasktree` repository.
+
+## Other Providers And Agents
+
+For agents that do not have a formal skill system, this repository can still be used as a promptable operating guide.
+
+Practical options:
+
+- Point the agent at `SKILL.md` and ask it to follow the workflow.
+- Copy the relevant section of `SKILL.md` into the agent's persistent instructions.
+- Keep `references/` available as supporting material instead of pasting everything into the prompt.
+- Run `scripts/tasktree_lint.py` manually or through the agent when local command execution is available.
+
+Minimum provider requirements:
+
+- The agent can read Markdown instructions.
+- The agent can edit files in the tasktree or companion repository.
+- Git access is available if using Companion Repository Mode.
+
+Provider-specific metadata files can be added alongside `agents/openai.yaml` if needed. Keep `SKILL.md` as the canonical instructions so the skill remains portable.
+
 ## Linting
 
 The bundled lint script checks Markdown tasktree files for common coordination issues:
