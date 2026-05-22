@@ -1,6 +1,10 @@
 # tasktree
 
-`tasktree` is a Codex skill for keeping durable task state in plain Markdown files. It is meant for coding agents and humans who need a readable record of what is pending, blocked, done, discovered, or ready to hand off.
+`tasktree` is a small operating system for work-in-progress task state. It gives coding agents and humans a shared, plain-text place to record what is pending, blocked, done, discovered, verified, and ready to hand off.
+
+Most agent work starts cleanly and gets messy later: plans change, branches diverge, chat context disappears, one agent finds work another agent needs, and "done" can mean anything unless evidence is written down. `tasktree` keeps that coordination state in Markdown so it can be read in a diff, edited by hand, committed to Git, and resumed by the next person or agent.
+
+The idea is deliberately simple: active tasks stay short and scannable, long context moves into detail files, completed children get compacted only when safe, and unfinished work is never silently deleted.
 
 The default workflow uses a companion repository named `<source-repo>.tasktree`, so task updates can move independently from source-code branches and pull requests. Local in-repo tracking with `.tasktree/` is available, but it is not the recommended default unless the work is a small personal project.
 
