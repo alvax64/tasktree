@@ -1,0 +1,7 @@
+interface:
+  display_name: "Tasktree"
+  short_description: "Plain-text task trees for agent work"
+  default_prompt: "Use $tasktree to create and maintain a Markdown tasktree for this repository."
+
+policy:
+  allow_implicit_invocation: true
