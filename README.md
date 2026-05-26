@@ -2,6 +2,39 @@
 
 `tasktree` is a small operating system for work-in-progress task state. It gives coding agents and humans a shared, plain-text place to record what is pending, blocked, done, discovered, verified, and ready to hand off.
 
+## 5-Minute Start
+
+1. Install this repository as `~/.codex/skills/tasktree`.
+2. Open the source repository you want to track.
+3. Ask Codex: `Use $tasktree to initialize task tracking for this repository.`
+4. Accept the default Companion Repository Mode unless this is a small personal project.
+5. Continue work normally. The agent should update task status, blockers, evidence, and handoff notes as meaningful work changes.
+
+Canonical install:
+
+```bash
+mkdir -p ~/.codex/skills
+git clone https://github.com/<owner>/tasktree ~/.codex/skills/tasktree
+```
+
+Update later:
+
+```bash
+cd ~/.codex/skills/tasktree
+git pull
+```
+
+Tasktree files are plain Markdown. Updating the skill does not rewrite existing tasktree repositories automatically.
+
+## Mode Decision Table
+
+| Situation | Recommended mode |
+| --- | --- |
+| Team repo, multiple agents, or long-running work | Companion Repository Mode |
+| Protected source repo or branch-heavy work | Companion Repository Mode |
+| Existing Jira, Linear, or GitHub Issues | Use tasktree as local coordination, not the source of truth |
+| Small personal project | Local `.tasktree/` mode is acceptable |
+
 Most agent work starts cleanly and gets messy later: plans change, branches diverge, chat context disappears, one agent finds work another agent needs, and "done" can mean anything unless evidence is written down. `tasktree` keeps that coordination state in Markdown so it can be read in a diff, edited by hand, committed to Git, and resumed by the next person or agent.
 
 The idea is deliberately simple: active tasks stay short and scannable, long context moves into detail files, completed children get compacted only when safe, and unfinished work is never silently deleted.
@@ -29,9 +62,18 @@ The skill does not require a database, service, or custom task manager. Markdown
 
 ```txt
 .
+├── CHANGELOG.md
+├── INSTALL.md
+├── MIGRATIONS.md
+├── README.md
 ├── SKILL.md
+├── USAGE.md
+├── VERSION
 ├── agents/
 │   └── openai.yaml
+├── examples/
+│   ├── companion-repo/
+│   └── local-mode/
 ├── references/
 │   ├── companion-mode.md
 │   └── templates.md
@@ -54,7 +96,7 @@ Avoid it for trivial one-shot answers. It can also sit alongside Jira, Linear, G
 
 ## Installing As A Skill
 
-Copy or clone this repository into your Codex skills directory, keeping the folder name as `tasktree`.
+See [INSTALL.md](INSTALL.md) for provider-specific install notes. The short version is: copy or clone this repository into your Codex skills directory, keeping the folder name as `tasktree`.
 
 Common locations:
 
@@ -72,6 +114,8 @@ Ask Codex to use the skill:
 ```txt
 Use $tasktree to create task tracking for this repository.
 ```
+
+See [USAGE.md](USAGE.md) for a prompt cookbook covering initialization, planning, status updates, blockers, handoffs, compaction, and linting.
 
 By default, the skill should suggest Companion Repository Mode and create or use:
 
@@ -141,6 +185,7 @@ The bundled lint script checks Markdown tasktree files for common coordination i
 - Malformed or unknown status markers
 - Broken detail links
 - Unresolved Git conflict markers
+- Unknown statuses, including custom statuses not listed in `status-legend.md`
 
 Run it against a tasktree root:
 
@@ -153,6 +198,20 @@ For local in-repo tracking:
 ```bash
 python scripts/tasktree_lint.py .tasktree
 ```
+
+For machine-readable output:
+
+```bash
+python scripts/tasktree_lint.py --json /path/to/repo.tasktree
+```
+
+For additional handoff checks:
+
+```bash
+python scripts/tasktree_lint.py --strict /path/to/repo.tasktree
+```
+
+Strict mode checks `Next Recommended Task` references and warns about dangling detail files.
 
 The linter is a helper, not a required runtime. Manual Markdown editing is still valid.
 

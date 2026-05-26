@@ -5,6 +5,8 @@ description: Maintain plain-text, Markdown-compatible task trees for AI agents a
 
 # tasktree
 
+Version: 0.1.0
+
 Use tasktree to keep durable task state in Markdown-compatible files. A tasktree records pending work, completed work, discoveries, blockers, evidence, and handoffs without requiring a database or external issue tracker.
 
 Do not use tasktree for trivial one-shot answers unless the user asks for durable tracking. Do not replace Jira, Linear, GitHub Issues, or a compliance tracker unless the user explicitly wants tasktree as the local companion.
@@ -174,6 +176,28 @@ Use detail files for major tasks, multi-step tasks, handoff-sensitive work, inve
 Detail files are optional for tiny checklist items.
 
 Read `references/templates.md` for full and compact detail file templates.
+
+## Linting
+
+If `scripts/tasktree_lint.py` is available, use it for consistency checks after meaningful tasktree edits:
+
+```bash
+python scripts/tasktree_lint.py /path/to/repo.tasktree
+```
+
+Use JSON output when another agent or automation will consume the result:
+
+```bash
+python scripts/tasktree_lint.py --json /path/to/repo.tasktree
+```
+
+Use strict mode before handoff, compaction, or release-sensitive coordination:
+
+```bash
+python scripts/tasktree_lint.py --strict /path/to/repo.tasktree
+```
+
+Strict mode adds checks for `Next Recommended Task` references and dangling detail files.
 
 ## Planning Workflow
 
