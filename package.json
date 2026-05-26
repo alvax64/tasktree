@@ -1,0 +1,33 @@
+{
+  "name": "@alvax64/tasktree",
+  "version": "0.1.0",
+  "description": "Installer and updater for the tasktree agent skill.",
+  "license": "MIT",
+  "bin": {
+    "tasktree": "bin/tasktree.js"
+  },
+  "files": [
+    "SKILL.md",
+    "VERSION",
+    "README.md",
+    "INSTALL.md",
+    "CHANGELOG.md",
+    "MIGRATIONS.md",
+    "install.sh",
+    "agents",
+    "references",
+    "scripts",
+    "bin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/alvax64/tasktree.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alvax64/tasktree/issues"
+  },
+  "homepage": "https://github.com/alvax64/tasktree#readme",
+  "engines": {
+    "node": ">=18"
+  }
+}

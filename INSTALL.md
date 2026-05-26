@@ -32,6 +32,18 @@ One-command install:
 curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash
 ```
 
+NPM installer:
+
+```bash
+npx @alvax64/tasktree install --agent=codex
+```
+
+Update with npm:
+
+```bash
+npx @alvax64/tasktree update --agent=codex
+```
+
 Install script options:
 
 ```bash
@@ -77,6 +89,12 @@ For Claude Code, install globally for your user:
 curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --agent=claude
 ```
 
+Or with npm:
+
+```bash
+npx @alvax64/tasktree install --agent=claude
+```
+
 This installs to:
 
 ```txt
@@ -89,6 +107,12 @@ Or install into a specific project, run from that project root:
 curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --agent=claude-project
 ```
 
+Or with npm:
+
+```bash
+npx @alvax64/tasktree install --agent=claude-project
+```
+
 This installs to:
 
 ```txt
@@ -99,6 +123,12 @@ For another agent, pass the exact destination skill directory:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --dest "$HOME/.your-agent/skills/tasktree"
+```
+
+Or with npm:
+
+```bash
+npx @alvax64/tasktree install --dest "$HOME/.your-agent/skills/tasktree"
 ```
 
 ## Generic agents

@@ -23,6 +23,18 @@ Use the tasktree skill to initialize task tracking for this repository.
 
 If your agent does not support installing directly from a GitHub URL, install manually into that agent's skills directory.
 
+NPM installer:
+
+```bash
+npx @alvax64/tasktree install
+```
+
+Update later:
+
+```bash
+npx @alvax64/tasktree update
+```
+
 ### Codex
 
 Install from the GitHub repository path:
@@ -36,6 +48,12 @@ Manual install:
 ```bash
 mkdir -p ~/.codex/skills
 git clone https://github.com/alvax64/tasktree ~/.codex/skills/tasktree
+```
+
+NPM install:
+
+```bash
+npx @alvax64/tasktree install --agent=codex
 ```
 
 Update later:
@@ -55,10 +73,22 @@ User-level install:
 curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --agent=claude
 ```
 
+NPM user-level install:
+
+```bash
+npx @alvax64/tasktree install --agent=claude
+```
+
 Project-level install, run from the target project:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --agent=claude-project
+```
+
+NPM project-level install, run from the target project:
+
+```bash
+npx @alvax64/tasktree install --agent=claude-project
 ```
 
 ### Other agents
@@ -67,6 +97,12 @@ Use a custom destination matching your agent's skills directory:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --dest "$HOME/.your-agent/skills/tasktree"
+```
+
+Or with npm:
+
+```bash
+npx @alvax64/tasktree install --dest "$HOME/.your-agent/skills/tasktree"
 ```
 
 For team or long-running work, prefer installing a tagged release instead of `main`:

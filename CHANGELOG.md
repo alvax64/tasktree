@@ -4,7 +4,7 @@ All notable changes to this skill are documented here.
 
 ## Unreleased
 
-No unreleased changes.
+- Added npm package metadata and the `tasktree` installer/updater CLI.
 
 ## 0.1.0 - 2026-05-27
 
