@@ -4,6 +4,10 @@ All notable changes to this skill are documented here.
 
 ## Unreleased
 
+No unreleased changes.
+
+## 0.1.0 - 2026-05-27
+
 - Added installation documentation.
 - Added usage prompt cookbook.
 - Added migration notes.
@@ -11,10 +15,6 @@ All notable changes to this skill are documented here.
 - Added linter `--json` output.
 - Added linter `--strict` checks.
 - Added status legend parsing.
-- Added checks for `Next Recommended Task` and optional dangling detail files.
-
-## 0.1.0
-
 - Initial tasktree skill.
 - Companion Repository Mode.
 - Local `.tasktree/` mode.

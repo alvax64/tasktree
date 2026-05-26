@@ -4,13 +4,34 @@
 
 ## 5-Minute Start
 
-1. Install this repository as `~/.codex/skills/tasktree`.
+1. Say to your agent:
+
+   ```txt
+   Install the skill from https://github.com/alvax64/tasktree/tree/main
+   ```
+
 2. Open the source repository you want to track.
-3. Ask Codex: `Use $tasktree to initialize task tracking for this repository.`
+3. Ask your agent to initialize task tracking for this repository.
 4. Accept the default Companion Repository Mode unless this is a small personal project.
 5. Continue work normally. The agent should update task status, blockers, evidence, and handoff notes as meaningful work changes.
 
-Canonical install:
+Example initialization prompt:
+
+```txt
+Use the tasktree skill to initialize task tracking for this repository.
+```
+
+If your agent does not support installing directly from a GitHub URL, install manually into that agent's skills directory.
+
+### Codex
+
+Install from the GitHub repository path:
+
+```txt
+Install the skill from https://github.com/alvax64/tasktree/tree/main
+```
+
+Manual install:
 
 ```bash
 mkdir -p ~/.codex/skills
@@ -26,10 +47,26 @@ git pull
 
 Tasktree files are plain Markdown. Updating the skill does not rewrite existing tasktree repositories automatically.
 
-Codex can also install directly from the GitHub repository path. Ask:
+### Claude Code
 
-```txt
-Install the skill from https://github.com/alvax64/tasktree/tree/main
+User-level install:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --agent=claude
+```
+
+Project-level install, run from the target project:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --agent=claude-project
+```
+
+### Other agents
+
+Use a custom destination matching your agent's skills directory:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --dest "$HOME/.your-agent/skills/tasktree"
 ```
 
 For team or long-running work, prefer installing a tagged release instead of `main`:
@@ -43,24 +80,6 @@ For a one-command install:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash
-```
-
-Claude Code user-level install:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --agent=claude
-```
-
-Claude Code project-level install, run from the target project:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --agent=claude-project
-```
-
-Custom agent install:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --dest "$HOME/.your-agent/skills/tasktree"
 ```
 
 ## Mode Decision Table
@@ -133,13 +152,15 @@ Avoid it for trivial one-shot answers. It can also sit alongside Jira, Linear, G
 
 ## Installing As A Skill
 
-See [INSTALL.md](INSTALL.md) for provider-specific install notes. The short version is: copy or clone this repository into your Codex skills directory, keeping the folder name as `tasktree`.
+See [INSTALL.md](INSTALL.md) for provider-specific install notes. The short version is: copy or clone this repository into your agent's skills directory, keeping the folder name as `tasktree`.
 
-Codex install prompt:
+For agents that support installing from a GitHub URL, say:
 
 ```txt
 Install the skill from https://github.com/alvax64/tasktree/tree/main
 ```
+
+For manual installs, place this repository in the skills directory expected by your agent, keeping the folder name as `tasktree`.
 
 Common locations:
 
@@ -152,7 +173,7 @@ The required file is `SKILL.md`. The `references/`, `agents/`, and `scripts/` di
 
 ## Basic Use
 
-Ask Codex to use the skill:
+Ask your agent to use the skill:
 
 ```txt
 Use $tasktree to create task tracking for this repository.

@@ -6,6 +6,8 @@ Tasktree repositories are plain Markdown. Skill updates do not automatically rew
 
 No required tasktree file migration.
 
+## 0.1.0
+
 Optional improvement:
 
 - Run `python scripts/tasktree_lint.py --strict /path/to/repo.tasktree` to detect stale links, dangling detail files, and `Next Recommended Task` drift.

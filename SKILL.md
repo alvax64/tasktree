@@ -1,6 +1,6 @@
 ---
 name: tasktree
-description: Maintain plain-text, Markdown-compatible task trees for AI agents and humans working alongside repositories, with Companion Repository Mode as the recommended default using <repo>.tasktree. Use when Codex needs to create, update, compact, split, synchronize, lint, or hand off durable task tracking. Local .tasktree mode is optional and not recommended unless the user has a small personal project.
+description: Maintain plain-text, Markdown-compatible task trees for AI agents and humans working alongside repositories, with Companion Repository Mode as the recommended default using <repo>.tasktree. Use when an agent needs to create, update, compact, split, synchronize, lint, or hand off durable task tracking. Local .tasktree mode is optional and not recommended unless the user has a small personal project.
 ---
 
 # tasktree
