@@ -177,6 +177,55 @@ Detail files are optional for tiny checklist items.
 
 Read `references/templates.md` for full and compact detail file templates.
 
+## Tree Refactoring and Splitting
+
+Refactor or split a tasktree when the current shape is making coordination worse. Do not split just for aesthetic symmetry.
+
+Split or refactor when any of these are true:
+
+- `TASKTREE.md` is no longer quickly scannable.
+- Multiple agents repeatedly edit the same file and cause conflicts.
+- A parent task has many unrelated children.
+- A subtree maps cleanly to a source area, owner, work type, milestone, release, or source directory.
+- Completed work dominates the active tree.
+- Detail paths carry the real structure but the root tree remains flat.
+- The same root file mixes unrelated audits, bugs, refactors, releases, and investigations.
+
+Preferred split dimensions:
+
+- By source area: `frontend/TASKTREE.md`, `backend/TASKTREE.md`, `infra/TASKTREE.md`.
+- By work type: `audits/TASKTREE.md`, `bugs/TASKTREE.md`, `refactors/TASKTREE.md`.
+- By source directory when the repository structure is the main coordination boundary.
+- By milestone or release when work is time-boxed.
+- By owner or agent only when conflict reduction or handoff clarity requires it.
+
+Rules for splitting:
+
+- Preserve all task IDs when moving tasks.
+- Preserve detail file paths unless moving them improves locality.
+- Never move incomplete tasks without keeping them discoverable from the root tasktree.
+- Keep root `TASKTREE.md` as an index when splitting into many files.
+- Replace moved subtrees in root `TASKTREE.md` with short pointer tasks or section links.
+- Put active work in the smallest relevant tasktree file.
+- Keep cross-cutting blockers visible in root `Open Blockers` or a shared blocker file.
+- Update `config.md` if root paths, detail directories, status legend paths, or split policy changed.
+- Update `journal.md` with what moved and why.
+- Update `Next Recommended Task` after the split.
+- Run `tasktree_lint.py --strict` after a split when the script is available.
+
+Root index example after splitting:
+
+```md
+# Tasktree
+
+repo-work/
+├── [ ] AUD-001 Frontend audit -> frontend/TASKTREE.md
+├── [ ] BUG-001 Backend bug batch -> backend/TASKTREE.md
+└── [B] OPS-001 CI migration -> infra/TASKTREE.md
+```
+
+When splitting by directories and subdirectories, mirror only the amount of repository structure that helps coordination. Avoid creating empty or one-task files unless the split prevents conflicts or matches a durable ownership boundary.
+
 ## Linting
 
 If `scripts/tasktree_lint.py` is available, use it for consistency checks after meaningful tasktree edits:

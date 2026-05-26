@@ -221,6 +221,7 @@ The skill is deliberately conservative:
 
 - Keep active tasktree files short.
 - Move long context into detail files.
+- Split or refactor oversized tasktrees by source area, source directory, work type, milestone, release, owner, or agent when doing so improves scanning, conflict reduction, or handoff clarity.
 - Mark `[x]` only with evidence, verification, or explicit acceptance.
 - Never delete incomplete tasks.
 - Never delete detail files unless explicitly requested.
