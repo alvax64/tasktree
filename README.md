@@ -14,7 +14,7 @@ Canonical install:
 
 ```bash
 mkdir -p ~/.codex/skills
-git clone https://github.com/<owner>/tasktree ~/.codex/skills/tasktree
+git clone https://github.com/alvax64/tasktree ~/.codex/skills/tasktree
 ```
 
 Update later:
@@ -25,6 +25,43 @@ git pull
 ```
 
 Tasktree files are plain Markdown. Updating the skill does not rewrite existing tasktree repositories automatically.
+
+Codex can also install directly from the GitHub repository path. Ask:
+
+```txt
+Install the skill from https://github.com/alvax64/tasktree/tree/main
+```
+
+For team or long-running work, prefer installing a tagged release instead of `main`:
+
+```bash
+mkdir -p ~/.codex/skills
+git clone --branch v0.1.0 https://github.com/alvax64/tasktree ~/.codex/skills/tasktree
+```
+
+For a one-command install:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash
+```
+
+Claude Code user-level install:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --agent=claude
+```
+
+Claude Code project-level install, run from the target project:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --agent=claude-project
+```
+
+Custom agent install:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --dest "$HOME/.your-agent/skills/tasktree"
+```
 
 ## Mode Decision Table
 
@@ -98,6 +135,12 @@ Avoid it for trivial one-shot answers. It can also sit alongside Jira, Linear, G
 
 See [INSTALL.md](INSTALL.md) for provider-specific install notes. The short version is: copy or clone this repository into your Codex skills directory, keeping the folder name as `tasktree`.
 
+Codex install prompt:
+
+```txt
+Install the skill from https://github.com/alvax64/tasktree/tree/main
+```
+
 Common locations:
 
 ```txt
@@ -143,6 +186,25 @@ Other fields, such as owner, branch, verification, risk, PR, source commit, or e
 ## Using With Claude
 
 Claude-style agent skills also use a `SKILL.md` file with YAML frontmatter and Markdown instructions. To use this repository with a Claude environment that supports skills, keep the same directory shape and install or upload the `tasktree` folder wherever that environment expects skill packages.
+
+For Claude Code, common locations are:
+
+```txt
+~/.claude/skills/tasktree
+.claude/skills/tasktree
+```
+
+Install globally for your user:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --agent=claude
+```
+
+Install into a specific project, run from that project root:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/alvax64/tasktree/main/install.sh | bash -s -- --agent=claude-project
+```
 
 The portable parts are:
 
