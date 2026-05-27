@@ -1,11 +1,11 @@
 ---
 name: tasktree
-description: Maintain plain-text, Markdown-compatible task trees for AI agents and humans working alongside repositories, with Companion Repository Mode as the recommended default using <repo>.tasktree. Use when an agent needs to create, update, compact, split, synchronize, lint, or hand off durable task tracking. Local .tasktree mode is optional and not recommended unless the user has a small personal project.
+description: Maintain plain-text, Markdown-compatible task trees for AI agents and humans working alongside repositories, with Companion Repository Mode as the recommended default using <repo>.tasktree. Use when an agent needs to create, update, compact, split, synchronize, lint, refactor oversized journals into directories, or hand off durable task tracking. Local .tasktree mode is optional and not recommended unless the user has a small personal project.
 ---
 
 # tasktree
 
-Version: 0.1.0
+Version: 0.1.1
 
 Use tasktree to keep durable task state in Markdown-compatible files. A tasktree records pending work, completed work, discoveries, blockers, evidence, and handoffs without requiring a database or external issue tracker.
 
@@ -48,6 +48,7 @@ For normal repository work, create:
 ├── config.md
 ├── status-legend.md
 ├── journal.md
+├── journal/              # optional when journal.md is refactored into files
 ├── completed.md
 ├── sessions/
 ├── details/
@@ -72,6 +73,7 @@ Local Mode stores tasktree files inside the source repository, usually under `.t
 ├── config.md
 ├── status-legend.md
 ├── journal.md
+├── journal/              # optional when journal.md is refactored into files
 ├── completed.md
 └── details/
 ```
@@ -93,7 +95,7 @@ Default metadata:
 Optional metadata includes task ID, updated date, owner/agent, related branch, verification, priority, risk, tags, source commit, PR, estimate, blocker reason, evidence path, or related source files.
 ```
 
-Use `references/templates.md` for initial `config.md`, `status-legend.md`, `journal.md`, `completed.md`, detail files, companion `source-repo.md`, and session logs.
+Use `references/templates.md` for initial `config.md`, `status-legend.md`, `journal.md`, optional `journal/` index files, `completed.md`, detail files, companion `source-repo.md`, and session logs.
 
 ## Tasktree Format
 
@@ -176,6 +178,47 @@ Use detail files for major tasks, multi-step tasks, handoff-sensitive work, inve
 Detail files are optional for tiny checklist items.
 
 Read `references/templates.md` for full and compact detail file templates.
+
+## Journal Refactoring
+
+Start with `journal.md` as the canonical session and audit trail. Refactor it into `journal/` files only when the single file is making review, search, synchronization, or handoff worse. Do not split just because multiple files look tidier.
+
+Refactor `journal.md` when any of these are true:
+
+- `journal.md` is no longer quickly scannable.
+- Session entries dominate the file and obscure recent state.
+- Multiple agents repeatedly edit the same journal and cause conflicts.
+- The journal mixes unrelated long-running workstreams, audits, releases, or incidents.
+- A time period, topic, owner, or source area has enough entries to be useful as its own file.
+- Journal history is needed, but active handoff needs a smaller current index.
+
+Preferred journal layouts:
+
+```txt
+journal.md                  # current index and recent entries
+journal/
+├── 2026/
+│   ├── 2026-05.md
+│   └── 2026-06.md
+├── sessions/
+│   └── 2026-05-27-agent.md
+├── topics/
+│   └── routing-refactor.md
+└── incidents/
+    └── ci-outage-2026-05.md
+```
+
+Rules for journal refactoring:
+
+- Keep `journal.md` as the discoverable entry point unless the tasktree config explicitly names a different journal index.
+- Move older or bulky entries into `journal/` files; keep recent entries, pointers, and the current handoff summary in `journal.md`.
+- Preserve dates, authors/agents, evidence links, task IDs, source commit references, and original ordering within each moved group.
+- Add a short migration note in `journal.md` listing what moved and why.
+- Fix relative links after moving entries.
+- Prefer chronological files for routine session history and topic files for long-running investigations or incidents.
+- Avoid creating empty journal directories or one-entry files unless the split prevents conflicts or creates a durable boundary.
+- Update `config.md` if journal paths, retention policy, or split policy changed.
+- Before handoff, ensure the latest active state is visible from `journal.md` without requiring a full archive read.
 
 ## Tree Refactoring and Splitting
 
@@ -353,6 +396,7 @@ When splitting, preserve IDs, statuses, and detail links; fix relative paths; ad
 - If unsure, create a finding or blocker instead of marking done.
 - If a task was completed outside the session, note the evidence.
 - Preserve audit history in journal, completed log, or detail files.
+- Never make archived journal entries undiscoverable from the journal index or config.
 
 ## Optional Linting
 
