@@ -4,7 +4,12 @@ All notable changes to this skill are documented here.
 
 ## Unreleased
 
+## 0.1.1 - 2026-05-27
+
 - Added npm package metadata and the `tasktree` installer/updater CLI.
+- Expanded README positioning for people and teams coordinating many agentic planning sessions without full tracking software overhead.
+- Documented the agent-friendly local update model that avoids constant task-tracker API calls.
+- Added default commit and push guidance for tasktree updates.
 
 ## 0.1.0 - 2026-05-27
 

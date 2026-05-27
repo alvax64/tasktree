@@ -26,8 +26,6 @@ Detection order:
 
 If a tasktree exists, update it whenever tasks are created, completed, blocked, or discovered. Before ending a meaningful work cycle, update relevant task statuses, detail files, blockers, journal/session log, completed log when needed, and "Next Recommended Task".
 
-Never silently overwrite an existing tasktree.
-
 ## Default Layout
 
 Use Companion Repository Mode by default. Create or use an adjacent companion repository named `<source-repo>.tasktree`.
@@ -268,6 +266,20 @@ repo-work/
 ```
 
 When splitting by directories and subdirectories, mirror only the amount of repository structure that helps coordination. Avoid creating empty or one-task files unless the split prevents conflicts or matches a durable ownership boundary.
+
+## Commit and Push Default
+
+When an agent changes tasktree files, committing and pushing those tasktree changes is part of the work by default. The user should not need to ask for this or manage it separately.
+
+In Companion Repository Mode:
+
+- Commit tasktree changes in the companion repo before ending the work cycle.
+- Push the companion repo after committing.
+- Use a concise commit message that describes the tasktree update.
+- Do not ask the user whether to commit or push routine tasktree updates unless there is a real risk, conflict, authentication failure, network failure, or explicit user instruction not to push.
+- If commit or push cannot be completed, record the reason in the journal or handoff summary and tell the user what remains.
+
+In Local Mode, follow the source repository's normal commit policy. If the user has not given permission to commit source-repo changes, still leave the tasktree updated and clearly state that the local tasktree changes are uncommitted.
 
 ## Linting
 

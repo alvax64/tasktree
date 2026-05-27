@@ -1,6 +1,6 @@
 {
   "name": "@alvax64/tasktree",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Installer and updater for the tasktree agent skill.",
   "license": "MIT",
   "bin": {
