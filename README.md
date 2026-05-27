@@ -15,7 +15,7 @@ Then reality shows up. One branch is not ready to merge. A second agent finds a 
 1. Install it through NPM (recommended):
 
    ```txt
-   npm install @alvax64/tasktree
+   npm install @alvax/tasktree
    ```
 
    or simply say to your agent:
@@ -40,7 +40,7 @@ If your agent does not support installing directly from a GitHub URL, install ma
 To update the skill later:
 
 ```bash
-npx @alvax64/tasktree update
+npx @alvax/tasktree update
 ```
 
 ## Basic Use
